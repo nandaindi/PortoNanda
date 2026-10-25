@@ -1,0 +1,829 @@
+:root {
+  --main-color: #f7f1e5;
+  --secondary-color: #343434;
+  --acsent-color: #a8430f;
+}
+
+body {
+  background-color: var(--main-color);
+  min-height: 900px;
+  font-family: "Ubuntu", sans-serif;
+}
+
+section h1 {
+  color: black;
+  font-size: 2.5rem;
+}
+/* Navbar Styles */
+
+.nav-link.active {
+  color: var(--acsent-color) !important;
+  font-weight: 700;
+}
+
+/*End Navbar*/
+
+/* Hero Section Styles */
+/* ===== Variabel warna ===== */
+/* Kalau :root ini sudah ada di file lain, cukup samakan nilainya */
+:root {
+  --btn-color: #c2531a; /* tombol */
+  --btn-hover: #a8430f;
+  --text-dark: #1f1a17;
+  --text-soft: #5c534b;
+}
+
+.color-acsent {
+  color: var(--acsent-color);
+}
+
+/* ===== Hero Section ===== */
+#hero {
+  color: var(--text-dark);
+  min-height: calc(100vh - 100px);
+  display: flex;
+  align-items: center;
+  padding: 30px 0 50px;
+}
+
+#hero .row {
+  align-items: center;
+}
+
+/* Sapaan */
+#hero .greeting {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--text-soft);
+  margin-bottom: 4px;
+}
+
+/* Nama */
+#hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+/* Baris peran */
+#hero h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+}
+
+/* Tagline */
+#hero .tagline {
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+/* ===== Foto profil ===== */
+.profile-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 350px;
+  aspect-ratio: 1 / 1;
+  margin-inline: auto;
+}
+
+/* Lingkaran latar di belakang foto */
+.profile-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #f0c9a8;
+}
+
+/* Foto: bawah mengikuti lengkung lingkaran, atas boleh keluar */
+.profile-img {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+  border-radius: 0;
+  clip-path: inset(0 0 0 0 round 0 0 999px 999px);
+}
+
+/* ===== Tombol ===== */
+.hero-buttons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+/* Let's Connect */
+.btn-custom1 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 20px;
+  background-color: var(--btn-color);
+  color: #ffffff;
+  border: 2px solid var(--btn-color);
+  border-radius: 7px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.btn-custom1:hover {
+  background-color: var(--btn-hover);
+  border-color: var(--btn-hover);
+  color: #ffffff;
+  transform: translateY(-3px);
+}
+
+/* Download CV */
+.btn-custom2 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 20px;
+  background-color: transparent;
+  color: var(--btn-color);
+  border: 2px solid var(--btn-color);
+  border-radius: 7px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.btn-custom2:hover {
+  background-color: var(--btn-color);
+  border-color: var(--btn-color);
+  color: #ffffff;
+  transform: translateY(-3px);
+}
+
+/* Ikon di dalam tombol */
+.hero-buttons .material-symbols-outlined {
+  display: inline-block;
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+/* ===== Ikon sosial media ===== */
+.social-icon {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  column-gap: 12px;
+  row-gap: 5px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.social-icon a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  font-size: 30px;
+  color: #343434;
+  text-decoration: none;
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.social-icon a:hover {
+  color: var(--acsent-color);
+  transform: translateY(-3px);
+}
+
+/* ===== Responsif ===== */
+
+/* Layar besar: foto rata kanan */
+@media (min-width: 768px) {
+  .profile-wrap {
+    margin-left: auto;
+    margin-right: 0;
+  }
+}
+
+/* Tablet dan HP */
+@media (max-width: 767px) {
+  #hero {
+    padding: 40px 0;
+  }
+
+  #hero .col-md-7,
+  #hero .col-md-4 {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  #hero .col-md-4 {
+    margin-top: 35px;
+  }
+
+  .profile-wrap {
+    max-width: 280px;
+  }
+}
+
+/* HP kecil */
+@media (max-width: 576px) {
+  .hero-buttons {
+    gap: 10px;
+  }
+
+  .hero-buttons a {
+    padding: 11px 16px;
+    font-size: 0.95rem;
+    flex: 1 1 auto;
+  }
+}
+/*End Hero Section*/
+
+/* About Section */
+
+.about-section {
+  padding: 75px 0 85px;
+  background-color: #f7f1e6;
+  color: #302b27;
+}
+
+/* Judul About */
+.about-heading {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.about-heading h2 {
+  margin: 0;
+  color: #302b27;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+/* Garis bawah judul */
+.about-heading hr {
+  display: block;
+  width: 70px;
+  height: 4px;
+  margin: 15px auto 0;
+  border: none;
+  border-radius: 10px;
+  background-color: #e97832;
+  opacity: 1;
+}
+
+/* Tata letak foto dan deskripsi */
+.about-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  row-gap: 35px;
+}
+
+/* Pembungkus foto */
+.about-image-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+  max-width: 350px;
+  margin: 0 auto;
+}
+
+/* Foto profil */
+.about-image {
+  display: block;
+  width: 100%;
+  max-width: 330px;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: center top;
+  color: #000000;
+  border: 2px solid;
+  border-radius: 50%;
+  box-shadow: none;
+}
+
+/* Badge GPA */
+.gpa-card {
+  position: absolute;
+  left: -5px;
+  bottom: 20px;
+  z-index: 1;
+  padding: 5px 13px;
+  background-color: #ffffff;
+  color: #000000;
+  border: 2px solid;
+  border-radius: 12px;
+  box-shadow: none;
+}
+
+/* Label GPA */
+.gpa-card .gpa-label {
+  display: block;
+  margin-bottom: 3px;
+  color: #766b60;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+/* Nilai GPA */
+.gpa-card .gpa-value {
+  margin: 0;
+  color: #b9521c;
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+/* Nilai maksimum GPA */
+.gpa-card .gpa-total {
+  color: #766b60;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* Konten deskripsi */
+.about-content {
+  width: 100%;
+  max-width: 680px;
+  margin-left: auto;
+}
+
+/* Paragraf About */
+.about-content p {
+  margin: 0 0 18px;
+  color: #5d554e;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.8;
+  text-align: justify;
+}
+
+/* Paragraf terakhir */
+.about-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* ==============================
+   TABLET
+================================= */
+
+@media (max-width: 991px) {
+  .about-section {
+    padding: 60px 0 70px;
+  }
+
+  .about-heading {
+    margin-bottom: 40px;
+  }
+
+  .about-heading h2 {
+    font-size: 2.2rem;
+  }
+
+  .about-image-wrapper {
+    max-width: 290px;
+  }
+
+  .about-image {
+    max-width: 270px;
+  }
+
+  .about-content {
+    max-width: 100%;
+  }
+
+  .about-content p {
+    font-size: 0.96rem;
+    line-height: 1.8;
+  }
+
+  .gpa-card {
+    left: -3px;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 575px) {
+  .about-section {
+    padding: 50px 0 60px;
+  }
+
+  .about-heading {
+    margin-bottom: 35px;
+  }
+
+  .about-heading h2 {
+    font-size: 2rem;
+  }
+
+  .about-heading hr {
+    width: 60px;
+    height: 4px;
+    margin-top: 12px;
+  }
+
+  .about-row {
+    row-gap: 30px;
+  }
+
+  .about-image-wrapper {
+    max-width: 255px;
+  }
+
+  .about-image {
+    max-width: 235px;
+    border-width: 4px;
+  }
+
+  .gpa-card {
+    left: 0;
+    bottom: 7px;
+    padding: 6px 9px;
+    border-radius: 8px;
+  }
+
+  .gpa-card .gpa-label {
+    font-size: 0.68rem;
+  }
+
+  .gpa-card .gpa-value {
+    font-size: 1.35rem;
+  }
+
+  .gpa-card .gpa-total {
+    font-size: 0.8rem;
+  }
+
+  .about-content p {
+    margin-bottom: 15px;
+    font-size: 0.93rem;
+    line-height: 1.75;
+  }
+}
+
+/*End About*/
+
+/* Skills Section */
+.skills-section {
+  padding: 80px 0;
+  background-color: var(--main-color);
+  color: #292929;
+}
+
+/* Judul section */
+.skills-heading {
+  margin-bottom: 45px;
+}
+
+.skills-heading h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+.skills-heading hr {
+  width: 90px;
+  height: 4px;
+  margin: 12px auto 15px;
+  border: 0;
+  border-radius: 10px;
+  background-color: #f28c28;
+  opacity: 1;
+  box-shadow: 0 0 12px rgba(242, 140, 40, 0.3);
+}
+
+.skills-heading p {
+  color: #777;
+  font-size: 0.95rem;
+}
+
+/* Kotak kategori */
+.skill-category {
+  height: 100%;
+  padding: 24px;
+  background-color: #ffffff;
+  border: 1px solid #f0e4d6;
+  border-radius: 18px;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.04);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.skill-category:hover {
+  transform: translateY(-5px);
+  border-color: #f28c28;
+  box-shadow: 0 10px 25px rgba(242, 140, 40, 0.12);
+}
+
+/* Judul kategori */
+.skill-category h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  padding-left: 12px;
+  border-left: 4px solid #f28c28;
+}
+
+/* Deskripsi kategori */
+.skill-category > p {
+  min-height: 48px;
+  margin-bottom: 22px;
+  color: #777;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+/* Grid kotak skill */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+/* Kotak setiap skill */
+.skill-card {
+  min-width: 0;
+  min-height: 108px;
+  padding: 14px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+  background-color: #fffaf3;
+  border: 1px solid #f2e6d8;
+  border-radius: 12px;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* Efek hover kotak skill */
+.skill-card:hover {
+  background-color: #fff0df;
+  border-color: #f28c28;
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(242, 140, 40, 0.12);
+}
+
+/* Logo software */
+.skill-card img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.skill-card:hover img {
+  transform: scale(1.1);
+}
+
+/* Ikon Font Awesome: hitam */
+.skill-card.text-skill i {
+  font-size: 30px;
+  color: #b86b35;
+  transition: transform 0.3s ease;
+}
+
+.skill-card.text-skill:hover i {
+  transform: scale(1.1);
+}
+
+/* Nama skill */
+.skill-card span {
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+  color: #292929;
+}
+
+/* Tablet */
+@media (max-width: 991px) {
+  .skill-category {
+    padding: 20px;
+  }
+
+  .skills-grid {
+    gap: 10px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 575px) {
+  .skills-section {
+    padding: 55px 0;
+  }
+
+  .skills-heading h2 {
+    font-size: 1.8rem;
+  }
+
+  .skill-category > p {
+    min-height: auto;
+  }
+
+  .skill-card {
+    min-height: 100px;
+  }
+}
+/* End Skills Section */
+
+/* ==============================
+   CERTIFICATIONS SECTION
+================================= */
+
+.certifications-section {
+  padding: 75px 0 85px;
+  background-color: #fffaf3;
+  color: #302b27;
+}
+
+/* Heading */
+.certifications-heading {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.certifications-heading h2 {
+  margin: 0;
+  color: #302b27;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.certifications-heading hr {
+  width: 70px;
+  height: 4px;
+  margin: 15px auto;
+  border: 0;
+  border-radius: 10px;
+  background-color: #e97832;
+  opacity: 1;
+}
+
+.certifications-heading p {
+  margin: 0;
+  color: #766b60;
+  font-size: 0.98rem;
+  line-height: 1.7;
+}
+
+/* Certificate Card */
+.certificate-card {
+  height: 100%;
+  padding: 12px;
+  background-color: #ffffff;
+  border: 1px solid #eee2d3;
+  border-radius: 14px;
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.certificate-card:hover {
+  transform: translateY(-4px);
+  border-color: #e97832;
+}
+
+/* Image Container */
+.certificate-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background-color: #f7f1e6;
+  border-radius: 8px;
+}
+
+/* Certificate Image */
+.certificate-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  transition: transform 0.35s ease;
+}
+
+.certificate-card:hover .certificate-image img {
+  transform: scale(1.03);
+}
+
+/* Hide certificates 4, 5, and 6 */
+.extra-certificate {
+  display: none;
+}
+
+/* Show additional certificates */
+.certifications-section.show-all .extra-certificate {
+  display: block;
+}
+
+/* More Certifications Button */
+.certifications-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 35px;
+}
+
+.btn-more-cert {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 22px;
+  background-color: #e97832;
+  color: #ffffff;
+  border: 2px solid #e97832;
+  border-radius: 7px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.btn-more-cert:hover {
+  background-color: transparent;
+  color: #e97832;
+  transform: translateY(-2px);
+}
+
+.btn-more-cert .material-symbols-outlined {
+  font-size: 21px;
+  transition: transform 0.3s ease;
+}
+
+.btn-more-cert:hover .material-symbols-outlined {
+  transform: translateX(3px);
+}
+
+/* Tablet */
+@media (max-width: 991px) {
+  .certifications-section {
+    padding: 60px 0 70px;
+  }
+
+  .certifications-heading h2 {
+    font-size: 2.2rem;
+  }
+
+  .certifications-heading {
+    margin-bottom: 35px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 575px) {
+  .certifications-section {
+    padding: 50px 0 60px;
+  }
+
+  .certifications-heading h2 {
+    font-size: 2rem;
+  }
+
+  .certifications-heading p {
+    font-size: 0.9rem;
+  }
+
+  .certifications-heading {
+    margin-bottom: 30px;
+  }
+
+  .certificate-card {
+    padding: 9px;
+    border-radius: 11px;
+  }
+
+  .certifications-more {
+    margin-top: 28px;
+  }
+}
