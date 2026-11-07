@@ -173,4 +173,31 @@
   initCertificateToggle();
   initProjectFilter();
   initScrollReveal();
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const roleText = document.getElementById("roleText");
+
+    if (!roleText) return;
+
+    const roles = ["UI/UX Designer", "Web Developer", "Administration"];
+
+    let currentIndex = 0;
+
+    setInterval(function () {
+      roleText.classList.add("fade-out");
+
+      setTimeout(function () {
+        currentIndex = (currentIndex + 1) % roles.length;
+
+        roleText.textContent = roles[currentIndex];
+
+        roleText.classList.remove("fade-out");
+        roleText.classList.add("fade-in");
+
+        setTimeout(function () {
+          roleText.classList.remove("fade-in");
+        }, 400);
+      }, 400);
+    }, 2500);
+  });
 })();

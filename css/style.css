@@ -1128,3 +1128,36 @@ button {
     transition-duration: 0.01ms !important;
   }
 }
+
+.hero-role {
+  font-size: 30px;
+  font-weight: 700;
+  color: #292b27;
+  min-height: 45px;
+  margin-bottom: 20px;
+}
+
+#roleText {
+  display: inline-block;
+  color: #c94f12;
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+
+#roleText.fade-out {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+#roleText.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 767px) {
+  .hero-role {
+    font-size: 21px;
+    min-height: 35px;
+  }
+}
