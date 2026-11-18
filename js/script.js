@@ -179,7 +179,11 @@
 
     if (!roleText) return;
 
-    const roles = ["UI/UX Designer", "Web Developer", "Administration"];
+    const roles = [
+      "UI/UX Designer",
+      "Web Developer",
+      "Administration & Data Management",
+    ];
 
     let currentIndex = 0;
 
@@ -199,5 +203,186 @@
         }, 400);
       }, 400);
     }, 2500);
+  });
+
+  /* ================= INFINITE CERTIFICATE CAROUSEL ================= */
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const track = document.getElementById("certificateTrack");
+    const prevBtn = document.getElementById("prevCertificate");
+    const nextBtn = document.getElementById("nextCertificate");
+    const indicators = document.querySelectorAll("#certificateIndicators span");
+
+    if (!track || !prevBtn || !nextBtn) return;
+
+    // Ambil enam sertifikat asli
+    const originalSlides = Array.from(
+      track.querySelectorAll(".certificate-slide"),
+    );
+
+    const totalSlides = originalSlides.length;
+
+    if (totalSlides <= 1) return;
+
+    // Buat duplikat untuk efek infinite loop
+    const firstClone = originalSlides[0].cloneNode(true);
+    const lastClone = originalSlides[totalSlides - 1].cloneNode(true);
+
+    firstClone.classList.add("certificate-clone");
+    lastClone.classList.add("certificate-clone");
+
+    firstClone.setAttribute("aria-hidden", "true");
+    lastClone.setAttribute("aria-hidden", "true");
+
+    track.appendChild(firstClone);
+    track.insertBefore(lastClone, originalSlides[0]);
+
+    const slides = Array.from(track.querySelectorAll(".certificate-slide"));
+
+    // Posisi awal: sertifikat pertama
+    let activeIndex = 0;
+    let scrollTimer;
+
+    function updateActiveSlide() {
+      const trackCenter =
+        track.getBoundingClientRect().left + track.clientWidth / 2;
+
+      let closestIndex = 0;
+      let closestDistance = Infinity;
+
+      slides.forEach((slide, index) => {
+        const rect = slide.getBoundingClientRect();
+        const slideCenter = rect.left + rect.width / 2;
+        const distance = Math.abs(trackCenter - slideCenter);
+
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = index;
+        }
+      });
+
+      // Ubah posisi clone menjadi indeks sertifikat asli
+      if (closestIndex === 0) {
+        activeIndex = totalSlides - 1;
+      } else if (closestIndex === totalSlides + 1) {
+        activeIndex = 0;
+      } else {
+        activeIndex = closestIndex - 1;
+      }
+
+      slides.forEach((slide, index) => {
+        slide.classList.toggle("active", index === closestIndex);
+      });
+
+      indicators.forEach((indicator, index) => {
+        indicator.classList.toggle("active", index === activeIndex);
+      });
+    }
+
+    function goToSlide(index, smooth = true) {
+      const target = slides[index + 1];
+
+      if (!target) return;
+
+      const position =
+        target.offsetLeft + target.offsetWidth / 2 - track.clientWidth / 2;
+
+      track.scrollTo({
+        left: position,
+        behavior: smooth ? "smooth" : "instant",
+      });
+    }
+
+    function handleInfiniteLoop() {
+      const trackCenter =
+        track.getBoundingClientRect().left + track.clientWidth / 2;
+
+      let closestIndex = 0;
+      let closestDistance = Infinity;
+
+      slides.forEach((slide, index) => {
+        const rect = slide.getBoundingClientRect();
+        const distance = Math.abs(trackCenter - (rect.left + rect.width / 2));
+
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = index;
+        }
+      });
+
+      // Jika berada di clone terakhir, pindah ke sertifikat asli terakhir
+      if (closestIndex === 0) {
+        goToSlide(totalSlides - 1, false);
+      }
+
+      // Jika berada di clone pertama, pindah ke sertifikat asli pertama
+      if (closestIndex === totalSlides + 1) {
+        goToSlide(0, false);
+      }
+
+      updateActiveSlide();
+    }
+
+    // Tombol berikutnya
+    nextBtn.addEventListener("click", function () {
+      if (activeIndex === totalSlides - 1) {
+        // Menuju clone pertama
+        const target = slides[totalSlides + 1];
+
+        track.scrollTo({
+          left:
+            target.offsetLeft + target.offsetWidth / 2 - track.clientWidth / 2,
+          behavior: "smooth",
+        });
+      } else {
+        goToSlide(activeIndex + 1);
+      }
+    });
+
+    // Tombol sebelumnya
+    prevBtn.addEventListener("click", function () {
+      if (activeIndex === 0) {
+        // Menuju clone terakhir
+        const target = slides[0];
+
+        track.scrollTo({
+          left:
+            target.offsetLeft + target.offsetWidth / 2 - track.clientWidth / 2,
+          behavior: "smooth",
+        });
+      } else {
+        goToSlide(activeIndex - 1);
+      }
+    });
+
+    // Klik indikator
+    indicators.forEach((indicator, index) => {
+      indicator.style.cursor = "pointer";
+
+      indicator.addEventListener("click", function () {
+        goToSlide(index);
+      });
+    });
+
+    // Deteksi saat geser manual atau swipe
+    track.addEventListener("scroll", function () {
+      updateActiveSlide();
+
+      clearTimeout(scrollTimer);
+
+      scrollTimer = setTimeout(function () {
+        handleInfiniteLoop();
+      }, 150);
+    });
+
+    window.addEventListener("resize", function () {
+      goToSlide(activeIndex, false);
+    });
+
+    // Atur posisi awal
+    requestAnimationFrame(function () {
+      goToSlide(0, false);
+      updateActiveSlide();
+    });
   });
 })();
